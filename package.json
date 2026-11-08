@@ -1,0 +1,25 @@
+{
+  "name": "simple-piano",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "ios": "next build && cap sync ios && cap open ios",
+    "cap:sync": "next build && cap sync ios"
+  },
+  "dependencies": {
+    "@breezystack/lamejs": "^1.2.7",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/ios": "^8.6.0",
+    "@capacitor/share": "^8.0.3",
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.0"
+  }
+}

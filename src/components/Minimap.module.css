@@ -1,0 +1,85 @@
+.minimap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #111;
+    touch-action: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.whites {
+    position: absolute;
+    inset: 0;
+    display: flex;
+}
+
+.white {
+    flex: 1;
+    background: linear-gradient(#c0bdb6, #f4f1e8);
+    border-right: 1px solid #555;
+}
+
+.white:last-child {
+    border-right: none;
+}
+
+.black {
+    position: absolute;
+    top: 0;
+    height: 60%;
+    background: #111;
+    border-radius: 0 0 2px 2px;
+}
+
+/* 今見えている範囲 */
+.window {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    border: 3px solid #5aa9ff;
+    border-radius: 6px;
+    background: rgba(90, 169, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3px;
+    pointer-events: none;
+}
+
+/* 端をつかめることを示す縦のつまみ */
+.grip {
+    width: 4px;
+    height: 50%;
+    border-radius: 2px;
+    background: #5aa9ff;
+}
+
+/* 2段表示のときの上の段の範囲 */
+.upperWindow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    border: 3px solid #ffb35a;
+    border-radius: 6px;
+    background: rgba(255, 179, 90, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3px;
+    pointer-events: none;
+}
+
+.upperGrip {
+    width: 4px;
+    height: 50%;
+    border-radius: 2px;
+    background: #ffb35a;
+}

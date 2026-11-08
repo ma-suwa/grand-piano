@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    touch-action: none;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.key {
+    position: relative;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-size: 100%;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+    touch-action: none;
+}
+
+.white {
+    border-top: 0.25em ridge #881810;
+    transition: all 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: linear-gradient(#c8c7bd, #e9e6dc);
+    /* ほんの少し黄色味(象牙色寄り) */
+    box-shadow: inset 0 1em rgba(0, 0, 0, 0.2),
+        inset 0 0 0.1em rgba(0, 0, 0, 0.6),
+        inset 0 -0.2em 0.02em rgba(255, 255, 255, 0.9),
+        0 1.5em 0 rgba(225, 225, 210, 0.5);
+    height: 100%;
+    width: 40px;
+    margin: 0 calc(var(--gap, 2px) / 2);
+    z-index: 1;
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.white:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 98%;
+    height: 30%;
+    transform: translateY(-100%);
+    background: linear-gradient(180deg, #ffffff00, #ffffff30);
+    pointer-events: none;
+}
+
+.white:active,
+.white.active {
+    transform: translateY(2%) scaleY(1.02);
+    transform-origin: top;
+    background: linear-gradient(#86847e, #b4b0a8);
+    box-shadow: inset 0 -0.2em 0.02em rgba(255, 255, 255, 0.2),
+        0 0.75em 0 rgb(133, 133, 133);
+}
+
+.black {
+    transition: all 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background-color: #000000;
+    height: var(--black-h, 60%);
+    /* 見える鍵の数に応じて Piano.js で決める(少ないほど長め) */
+    box-shadow: inset 0 5em 0.1em rgb(0, 0, 0);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    border: solid 0.1em rgba(0, 0, 0, 0.8);
+    border-radius: 0 0 0.3em 0.3em;
+}
+
+.black::before {
+    content: "";
+    position: absolute;
+    border-top-right-radius: 1em;
+    bottom: 11%;
+    left: 5%;
+    width: 90%;
+    height: 70%;
+    border-radius: 0.3em;
+    box-shadow: 0 0.2em .3em #fff9ca90;
+    background: linear-gradient(0deg, #000000 5%, #282723 95%, #000000 100%);
+    pointer-events: none;
+}
+
+.black::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8%;
+    border-radius: 100%;
+    background: linear-gradient(0deg, #414141, #000000);
+    pointer-events: none;
+}
+
+.black:active,
+.black.active {
+    height: calc(var(--black-h, 60%) + 1%);
+    background-color: #0b0b0b;
+}
+
+.black:active::before,
+.black.active::before {
+    box-shadow: none;
+    background: linear-gradient(#000000, #000000);
+}
+
+.black:active::after,
+.black.active::after {
+    box-shadow: none;
+    background: linear-gradient(#000000, #000000);
+}
+
+.key {
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: none;
+}
+
+.key-c-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    text-align: center;
+    font-size: 10px;
+    font-family: system-ui, sans-serif;
+    color: #777;
+    pointer-events: none;
+}
+
+.key-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    font-family: system-ui, sans-serif;
+    pointer-events: none;
+}
+
+.white .key-hint {
+    bottom: 22px;
+    color: #5aa9ff;
+}
+
+.black .key-hint {
+    top: 8px;
+    color: #9cc8ff;
+    z-index: 3;
+}
+
+@media (hover: none) {
+
+    .key-hint {
+        display: none;
+    }
+}
+/* ループ(🔁)で鳴っている鍵(オレンジ) */
+.white.loop {
+    background: linear-gradient(#d9a868, #f3d6ae);
+}
+
+.black.loop::before {
+    background: linear-gradient(0deg, #4a2a06 5%, #9a6224 95%, #4a2a06 100%);
+}

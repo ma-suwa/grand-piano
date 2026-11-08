@@ -1,0 +1,300 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #000;
+    color: #e8e8ea;
+    font-family: system-ui, sans-serif;
+    /* iPhoneのノッチやホームバーを避ける */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    box-sizing: border-box;
+}
+
+/* 上の縮小図 */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 8px 10px;
+}
+
+.status {
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #888;
+}
+
+/* 鍵盤の段をまとめる。画面の残りいっぱいを使う(狭い画面では2段) */
+.rows {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    touch-action: none;
+}
+
+/* 1段のときは、鍵盤が長くなりすぎないよう高さを最大240pxにして上下の中央に置く(スマホの横持ちでも上下に余白が出る) */
+.rows.single {
+    max-height: 240px;
+    margin: auto 0;
+}
+
+/* iPad などの高さのある画面: 段の高さを白鍵の幅に合った長さまで(--row-max は Piano.js で決める)にして、上下の中央に置く */
+@media (min-height: 600px) {
+    .rows {
+        max-height: calc(var(--row-max, 10000px) * 2 + 6px);
+        margin: auto 0;
+    }
+
+    .rows.single {
+        max-height: var(--row-max, 240px);
+    }
+}
+
+/* 1段ぶんの鍵盤を表示する窓 */
+.viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    touch-action: none;
+    background: #000;
+}
+
+.keyboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    /* 鍵盤の幅に合わせて変わる(font-size を Piano.js で鍵盤の幅から決めている) */
+    padding-top: 0.875em;
+    padding-bottom: 1.125em;
+    box-sizing: border-box;
+    background: linear-gradient(#000000, #666666);
+    will-change: transform;
+}
+
+/* 縮小図の横に並ぶボタン(録音・一覧・段の切り替え) */
+.buttons {
+    flex-shrink: 0;
+    display: flex;
+    gap: 6px;
+}
+
+.button {
+    position: relative;
+    height: 36px;
+    min-width: 36px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #1c1c1f;
+    color: #ddd;
+    font: inherit;
+    cursor: pointer;
+}
+
+.button.on {
+    background: #2f6fe0;
+    border-color: #2f6fe0;
+    color: #fff;
+}
+
+.recIcon {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ff3b30;
+}
+
+.stopIcon {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: #fff;
+}
+
+/* 録音中は赤く点滅させる */
+.button.recording {
+    background: #c9231a;
+    border-color: #ff3b30;
+    color: #fff;
+    animation: recPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes recPulse {
+    50% {
+        background: #8e1610;
+    }
+}
+
+.recTime {
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.rowsLabel {
+    font-size: 14px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* まだ聴いていない録音があるときの赤い丸(≡ ボタンの右上) */
+.dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff3b30;
+    box-shadow: 0 0 0 2px #1c1c1f;
+}
+
+/* 長押しを使うボタン(🔁・メトロノーム)。長押しで文字選択やメニューが出ないようにする */
+.pressButton {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 最初の音を待っている: 赤く点滅 */
+.loopArmed {
+    border-color: #ff3b30;
+    color: #ff3b30;
+    animation: loopBlink 1s steps(1) infinite;
+}
+
+@keyframes loopBlink {
+    50% {
+        border-color: #333;
+        color: #ddd;
+    }
+}
+
+/* くり返し再生中: オレンジ */
+.loopPlaying {
+    background: #3d2a12;
+    border-color: #ffb35a;
+    color: #ffb35a;
+}
+
+/* 止めている(ループは残っている) */
+.loopPaused {
+    border-color: #7a5a33;
+    color: #ffb35a;
+}
+
+/* ループの進み具合(ボタンの下の線) */
+.loopBar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: #ffb35a;
+    transform-origin: left;
+    animation: loopProgress linear infinite;
+}
+
+@keyframes loopProgress {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* ループが流れ始める前のカウントダウン(3, 2, 1) */
+.countIn {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.countIn span {
+    min-width: 1.6em;
+    padding: 0.05em 0.3em;
+    border-radius: 0.3em;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffb35a;
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    animation: countPop 0.8s ease-out both;
+}
+
+@keyframes countPop {
+    from {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+    25% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        opacity: 0.6;
+    }
+}
+
+/* メトロノームのボタン。鳴らしているときは青、拍に合わせて光る(1拍目は強く) */
+.metroButton {
+    transition: background 0.08s;
+}
+
+.metroOn {
+    border-color: #2f6fe0;
+    color: #8db4ff;
+}
+
+.metroButton[data-beat='beat'] {
+    background: #233a66;
+}
+
+.metroButton[data-beat='beatAccent'] {
+    background: #2f6fe0;
+    color: #fff;
+}
+
+/* 🔁 と削除ボタンをまとめる枠 */
+.group {
+    display: flex;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1c1c1f;
+}
+
+/* 枠の中のボタンは自分の枠線を持たない(状態の色は枠ごと変えない) */
+.button.groupButton {
+    border: none;
+    border-radius: 0;
+    height: 34px;
+}
+
+.groupTrash {
+    border-left: 1px solid #333 !important;
+    color: #bbb;
+}
+
+/* 録音前のカウントは赤 */
+.countRec span {
+    color: #ff5a4f;
+}

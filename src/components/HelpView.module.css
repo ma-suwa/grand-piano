@@ -1,0 +1,93 @@
+/* 使い方(メニューの中)。見出しをタップして開閉する */
+.help {
+    padding: 4px 0 20px;
+}
+
+.section {
+    border-bottom: 1px solid #2c2c30;
+}
+
+/* 見出し(タップで開閉) */
+.head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 13px 16px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.head:active {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.chevron {
+    flex-shrink: 0;
+    color: #8a8a90;
+    transition: transform 0.15s ease;
+}
+
+.open .chevron {
+    transform: rotate(90deg);
+}
+
+.body {
+    padding: 0 16px 14px;
+    animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+.text {
+    margin: 0 0 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c4c4c8;
+}
+
+/* 画面のパーツを切り抜いた画像 */
+.image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 4px 0 10px;
+    border: 1px solid #36363c;
+    border-radius: 8px;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* 文中のボタンのアイコン(小さな枠つき) */
+.inlineIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 1px;
+    vertical-align: -5px;
+    border: 1px solid #44444b;
+    border-radius: 5px;
+    background: #26262b;
+    color: #e8e8ea;
+}
+
+.credit {
+    margin: 20px 16px 0;
+    font-size: 11px;
+    color: #77777d;
+}

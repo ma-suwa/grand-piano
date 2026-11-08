@@ -1,0 +1,19 @@
+/* ループのタイムライン(全体図と同じ場所に出す、細い帯) */
+.timeline {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 20px;
+    align-self: center;
+    border: 1px solid #7a5a33;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: #141416;
+}
+
+.canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

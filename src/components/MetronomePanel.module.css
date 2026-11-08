@@ -1,0 +1,105 @@
+/* メトロノームのテンポ・拍子の調整(ボタンの長押しで出る) */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+}
+
+.panel {
+    position: fixed;
+    z-index: 31;
+    top: calc(env(safe-area-inset-top) + 56px);
+    right: calc(env(safe-area-inset-right) + 8px);
+    width: 260px;
+    padding: 14px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: #1c1c1f;
+    color: #e8e8ea;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    font-family: system-ui, sans-serif;
+}
+
+.tempoRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #3a3a40;
+    border-radius: 50%;
+    background: #26262a;
+    color: #e8e8ea;
+    font: inherit;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.tempo {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.tempoValue {
+    font-size: 34px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.tempoUnit {
+    font-size: 12px;
+    color: #8a8a90;
+}
+
+.slider {
+    width: 100%;
+    accent-color: #2f6fe0;
+}
+
+.segment {
+    display: flex;
+    border: 1px solid #3a3a40;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.segmentButton {
+    flex: 1;
+    padding: 8px 9px;
+    border: none;
+    border-left: 1px solid #3a3a40;
+    background: transparent;
+    color: #c4c4c8;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.segmentButton:first-child {
+    border-left: none;
+}
+
+.segmentButton.selected {
+    background: #2f6fe0;
+    color: #fff;
+}
+
+.panel button:disabled,
+.slider:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.note {
+    margin: 0;
+    font-size: 11px;
+    color: #8a8a90;
+}

@@ -1,0 +1,152 @@
+/* 録音した音源の一覧(メニューの中) */
+.empty {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 13px;
+    color: #999;
+}
+
+/* 一覧は縦にスクロールできる */
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+}
+
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+}
+
+.item.playing {
+    background: rgba(70, 140, 255, 0.14);
+}
+
+.play,
+.delete,
+.iconButton {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.play {
+    background: #2f6fe0;
+    color: #fff;
+}
+
+.delete,
+.iconButton {
+    background: transparent;
+    color: #888;
+}
+
+.iconButton {
+    margin-right: -6px;
+}
+
+.iconButton.iconOn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+}
+
+/* 共有の形式を選ぶ行(録音の下に開く) */
+.share {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-height: 40px;
+    padding: 2px 4px 6px 48px;
+    box-sizing: border-box;
+}
+
+.shareLabel {
+    margin-right: auto;
+    font-size: 12px;
+    color: #8a8a90;
+}
+
+.format {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 7px 12px;
+    border: 1px solid #3a3a40;
+    border-radius: 8px;
+    background: #222226;
+    color: #eee;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.format small {
+    font-size: 10px;
+    font-weight: 400;
+    color: #8a8a90;
+}
+
+.busy {
+    font-size: 12px;
+    color: #bbb;
+}
+
+.playIcon {
+    margin-left: 2px; /* 三角形は見た目の中心が左に寄るので少しずらす */
+}
+
+/* 名前部分。タップで名前を変更 */
+.info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 4px 2px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.name {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.nameText {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta {
+    font-size: 11px;
+    color: #8a8a90;
+}
+
+/* まだ聴いていない録音の印 */
+.unheard {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff3b30;
+}

@@ -1,0 +1,9 @@
+/node_modules
+/.next/
+/out/
+/ios/
+.DS_Store
+.env*
+*.pem
+npm-debug.log*
+next-env.d.ts
